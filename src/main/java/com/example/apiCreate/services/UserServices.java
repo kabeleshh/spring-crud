@@ -33,6 +33,13 @@ public class UserServices {
         return userRepo.save(user);
     }
 
+    public User updateUser(int id, User user){
+        User actualUser = userRepo.findById(id).orElseThrow();
+        actualUser.setName(user.getName());
+        actualUser.setAddress(user.getAddress());
+        return userRepo.save(actualUser);
+    }
+
     public boolean deleteUser(int id){
         if(userRepo.existsById(id)){
             userRepo.deleteById(id);
